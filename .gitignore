@@ -4,10 +4,10 @@ server/.env
 
 # Node artifact files
 node_modules/
-server/*/node_modules/
+server/node_modules/
 client/node_modules/
 dist/
-server/*/package-lock.json
+server/package-lock.json
 
 # Compiled Java class files
 *.class
