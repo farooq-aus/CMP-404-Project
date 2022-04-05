@@ -16,7 +16,7 @@ const getCollector = async (id) => {
   })
 }
 
-const updateCollector = async (binId, updateBody) => {
+const updateCollector = async (collectorId, updateBody) => {
   const collector = await Collector.findByIdAndUpdate(
     collectorId,
     updateBody
