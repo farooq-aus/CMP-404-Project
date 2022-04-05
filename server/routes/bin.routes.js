@@ -6,7 +6,7 @@ const router = express.Router()
 router.route('/').get(binController.getBins).post(binController.createBin)
 
 router
-  .route('/:userId')
+  .route('/:binId')
   .get(binController.getBin)
   .put(binController.updateBin)
   .delete(binController.deleteBin)

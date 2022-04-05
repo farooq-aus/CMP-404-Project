@@ -1,9 +1,8 @@
-var mongoose = require('mongoose')
-const Bin = require('../models/Bin.model')
+const binService = require('../services/bin.service')
 
 const createBin = async (req, res) => {
   try {
-    await Bin.create(req.body)
+    await binService.createBin(req.body)
 
     res.status(201).json({
       ok: true,
@@ -19,7 +18,7 @@ const createBin = async (req, res) => {
 
 const getBins = async (req, res) => {
   try {
-    const bins = await Bin.find({})
+    const bins = await binService.findBins({})
     res.status(200).json(bins)
   } catch (e) {
     res.status(404).json({
@@ -31,9 +30,8 @@ const getBins = async (req, res) => {
 
 const getBin = async (req, res) => {
   try {
-    const bin = await Bin.findOne({
-      _id: mongoose.Types.ObjectId(req.params.userId),
-    })
+    const bin = await binService.getBinById(req.params.binId)
+    if (!bin) throw new Error('Could not find Bin with _id ' + req.params.binId)
     res.status(200).json(bin)
   } catch (e) {
     res.status(409).json({
@@ -45,11 +43,8 @@ const getBin = async (req, res) => {
 
 const updateBin = async (req, res) => {
   try {
-    await Bin.findByIdAndUpdate(req.params.userId, req.body)
-    res.status(200).json({
-      ok: true,
-      message: 'Bin updated',
-    })
+    const bin = await binService.updateBinById(req.params.binId, req.body)
+    res.status(200).json(bin)
   } catch (e) {
     res.status(409).json({
       ok: false,
@@ -60,7 +55,7 @@ const updateBin = async (req, res) => {
 
 const deleteBin = async (req, res) => {
   try {
-    await Bin.findOneAndDelete({ _id: req.params.userId })
+    await binService.deleteBinById(req.params.binId)
     res.status(200).json({
       ok: true,
       message: 'Bin deleted',
