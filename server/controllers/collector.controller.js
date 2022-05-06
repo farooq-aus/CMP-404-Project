@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const collectorservice = require('../services/collector.service')
 
 const createCollector = async (req, res) => {
@@ -31,7 +31,9 @@ const getAllCollectors = async (req, res) => {
 
 const getCollector = async (req, res) => {
   try {
-    const collector = await collectorservice.getCollector(req.params.collectorId)
+    const collector = await collectorservice.getCollector(
+      req.params.collectorId
+    )
     res.status(200).json(collector)
   } catch (e) {
     res.status(409).json({

@@ -1,7 +1,7 @@
 const express = require('express')
 const collectorRoute = require('./collector.routes')
 const binRoute = require('./bin.routes')
-const userRoute = require('./user.routes')
+const adminRoute = require('./admin.routes')
 
 const router = express.Router()
 
@@ -15,9 +15,9 @@ const routes = [
     route: binRoute,
   },
   {
-    path: '/user',
-    route: userRoute,
-  }
+    path: '/admin',
+    route: adminRoute,
+  },
 ]
 
 routes.forEach((route) => {
