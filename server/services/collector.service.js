@@ -17,7 +17,7 @@ const getCollector = async (id) => {
 }
 
 const updateCollector = async (collectorId, updateBody) => {
-  const collector = await Collector.findByIdAndUpdate(
+  let collector = await Collector.findByIdAndUpdate(
     collectorId,
     updateBody
     // {
@@ -25,6 +25,7 @@ const updateCollector = async (collectorId, updateBody) => {
     //   new: true,
     // }
   )
+  collector = await getCollector(collectorId)
   return collector
 }
 

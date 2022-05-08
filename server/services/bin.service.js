@@ -17,7 +17,7 @@ const getBinById = async (id) => {
 }
 
 const updateBinById = async (binId, updateBody) => {
-  const bin = await Bin.findByIdAndUpdate(
+  let bin = await Bin.findByIdAndUpdate(
     binId,
     updateBody
     // {
@@ -25,6 +25,7 @@ const updateBinById = async (binId, updateBody) => {
     //   new: true,
     // }
   )
+  bin = await getBinById(binId)
   return bin
 }
 

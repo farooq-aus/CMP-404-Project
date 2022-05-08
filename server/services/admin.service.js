@@ -17,7 +17,7 @@ const getAdmin = async (id) => {
 }
 
 const updateAdmin = async (adminId, updateBody) => {
-  const admin = await Admin.findByIdAndUpdate(
+  let admin = await Admin.findByIdAndUpdate(
     adminId,
     updateBody
     // {
@@ -25,6 +25,7 @@ const updateAdmin = async (adminId, updateBody) => {
     //   new: true,
     // }
   )
+  admin = await getBinById(adminId)
   return admin
 }
 
